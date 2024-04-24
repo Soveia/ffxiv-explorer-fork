@@ -772,6 +772,12 @@ public class Model extends Game_File {
                         case 0x3431:
                             gl.glCompressedTexImage2D(GL3.GL_TEXTURE_2D, 0, GL3.GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, tex.uncompressedWidth, tex.uncompressedHeight, 0, tex.mipmapOffsets[1] - tex.mipmapOffsets[0], dxtBB);
                             break;
+                        case 0x6230: // = BC5 = RGTC2
+                            gl.glCompressedTexImage2D(GL3.GL_TEXTURE_2D, 0, GL3.GL_COMPRESSED_RG_RGTC2, tex.uncompressedWidth, tex.uncompressedHeight, 0, tex.mipmapOffsets[1] - tex.mipmapOffsets[0], dxtBB);
+                            break;
+                        case 0x6432: // = BC7 = BPTC UNorm
+                            gl.glCompressedTexImage2D(GL3.GL_TEXTURE_2D, 0, GL3.GL_COMPRESSED_RGBA_BPTC_UNORM_ARB, tex.uncompressedWidth, tex.uncompressedHeight, 0, tex.mipmapOffsets[1] - tex.mipmapOffsets[0], dxtBB);
+                            break;
                         case 0x2460:
                             gl.glTexImage2D(GL3.GL_TEXTURE_2D, 0, GL3.GL_RGBA, tex.uncompressedWidth, tex.uncompressedHeight, 0, GL3.GL_RGBA, GL3.GL_HALF_FLOAT, dxtBB);
                             break;

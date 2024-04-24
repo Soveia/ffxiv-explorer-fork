@@ -139,6 +139,10 @@ public class Texture_File extends Game_File {
                 return "DX3";
             case 0x3431:
                 return "DX5";
+            case 0x6230:
+                return "BC5";
+            case 0x6232:
+                return "BC7";
             case 0x1130:
             case 0x1131:
                 return "RGB 8bit";
@@ -155,13 +159,4 @@ public class Texture_File extends Game_File {
                 return String.format("Unknown: 0x%x", compressionType);
         }
     }
-
-    public int getSize() {
-        if (compressionType == 0x3431) {
-            return (uncompressedWidth * uncompressedWidth) / 2;
-        }
-
-        return -1;
-    }
-
 }
