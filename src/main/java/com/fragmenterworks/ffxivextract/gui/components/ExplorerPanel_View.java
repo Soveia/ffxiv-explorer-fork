@@ -279,9 +279,6 @@ public class ExplorerPanel_View extends JScrollPane implements MouseListener, II
                     indexNode.getOrCreateSubfolder(name).setUserObject(folder);
             }
 
-            if (!unknownFolder.subfolders.isEmpty())
-                indexNode.subfolders.put(unknownFolder.name, unknownFolder);
-
             for (var file : indexFile.getFiles()) {
                 // If a file has a parent, then it will be lazy-expanded later on.
                 if (file.getParent() != null)
@@ -302,6 +299,9 @@ public class ExplorerPanel_View extends JScrollPane implements MouseListener, II
                 var path = name.substring(0, off);
                 unknownFolder.getOrCreateSubfolder(path).addFile(file);
             }
+
+            if (!unknownFolder.subfolders.isEmpty() || !unknownFolder.files.isEmpty())
+                indexNode.subfolders.put(unknownFolder.name, unknownFolder);
 
             insert(indexNode, pos);
             model.nodesWereInserted(this, new int[]{pos});
