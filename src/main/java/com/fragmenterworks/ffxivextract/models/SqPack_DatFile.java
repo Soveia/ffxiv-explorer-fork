@@ -373,7 +373,11 @@ public class SqPack_DatFile {
             bb.order(endian);
 
             bb.position(0x0E);
-            int numMipmaps = bb.getShort();
+            int numMipmaps = bb.get();
+
+            // DT Bench/040000/~001b31fa: MipLevels have its MSB set for some reason?
+            numMipmaps &= 0x7F;
+
             mipmapPosTable = new int[numMipmaps];
 
             if (numMipmaps < blockCount)
